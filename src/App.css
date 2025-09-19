@@ -386,6 +386,20 @@
   font-size: 1.5rem;
 }
 
+.student-table-scroll {
+  max-height: 400px; 
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.student-table-scroll thead th {
+  position: sticky;
+  top: 0;
+  background: #f4f4f4;
+  z-index: 1;
+}
+
 .search-wrapper {
   display: flex;
   align-items: center;

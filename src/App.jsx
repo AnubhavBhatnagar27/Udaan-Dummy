@@ -1,7 +1,7 @@
 // src/App.jsx
 import React, { useRef, useState } from "react";
 import logo from "./assets/logo.jpg";
-import uploadIcon from "./assets/upload-icon.png"; // 👈 yaha apna icon import karein
+import uploadIcon from "./assets/upload-icon.png";
 import {
   BrowserRouter as Router,
   Routes,
@@ -281,14 +281,13 @@ function ProfileSection() {
 
       <div className="profile-right">
         <div className="upload-box">
-          {/* Icon in top-right corner */}
           <img src={uploadIcon} alt="Upload Icon" className="upload-icon" />
           <img
-  src={uploadIcon}
-  alt="Upload Icon"
-  className="upload-icon"
-  onClick={() => window.open("/student-data.xlsx", "_blank")}  
-/>
+            src={uploadIcon}
+            alt="Upload Icon"
+            className="upload-icon"
+            onClick={() => window.open("/student-data.xlsx", "_blank")}
+          />
 
           <h3>Upload Student Data</h3>
           <p>
@@ -399,39 +398,42 @@ function StudentTable() {
         </div>
       </div>
 
-      <table>
-        <thead>
-          <tr>
-            <th>STUDENT NAME</th>
-            <th>RISK</th>
-            <th>DAYS IN</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filtered.length > 0 ? (
-            filtered.map((s) => (
-              <tr key={s.name}>
-                <td className="student-name-cell">
-                  <strong>{s.name}</strong>
-                  <p>Attendance: 72% this semester</p>
-                </td>
-                <td>
-                  <span className={`badge badge-${s.risk.toLowerCase()}`}>
-                    {s.risk}
-                  </span>
-                </td>
-                <td>{s.daysIn}</td>
-              </tr>
-            ))
-          ) : (
+      {/* 👇 Scrollable wrapper */}
+      <div className="student-table-scroll">
+        <table>
+          <thead>
             <tr>
-              <td colSpan="3" className="no-data">
-                ❌ No student found
-              </td>
+              <th>STUDENT NAME</th>
+              <th>RISK</th>
+              <th>DAYS IN</th>
             </tr>
-          )}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {filtered.length > 0 ? (
+              filtered.map((s) => (
+                <tr key={s.name}>
+                  <td className="student-name-cell">
+                    <strong>{s.name}</strong>
+                    <p>Attendance: 72% this semester</p>
+                  </td>
+                  <td>
+                    <span className={`badge badge-${s.risk.toLowerCase()}`}>
+                      {s.risk}
+                    </span>
+                  </td>
+                  <td>{s.daysIn}</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="3" className="no-data">
+                  ❌ No student found
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
